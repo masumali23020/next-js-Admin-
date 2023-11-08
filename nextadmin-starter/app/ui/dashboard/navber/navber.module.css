@@ -1,3 +1,35 @@
-.continer {
-  background-color: bisque;
+.container {
+  padding: 20px;
+  border-radius: 10px;
+  background-color: var(--bgSoft);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-left: 5px;
+}
+.title {
+}
+.menu {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.search {
+  display: flex;
+  background-color: #2e374a;
+  padding: 10px;
+  gap: 10px;
+  border-radius: 10px;
+  align-items: center;
+}
+.input {
+  background-color: transparent;
+  border: none;
+  color: var(--text);
+}
+
+.icons {
+  display: flex;
+  gap: 20px;
 }
