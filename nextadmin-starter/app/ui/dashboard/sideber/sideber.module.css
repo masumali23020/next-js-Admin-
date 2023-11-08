@@ -1,0 +1,27 @@
+.container {
+  background-color: --bgSoft;
+}
+.user {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.userImage {
+  border-radius: 50%;
+  object-fit: cover;
+}
+.userDetail {
+  display: flex;
+  flex-direction: column;
+}
+.list {
+  list-style-type: none;
+}
+.title {
+}
+.cat {
+  font: bold;
+  color: var(--textSoft);
+  font-size: 13px;
+  margin: 10px 0px;
+}

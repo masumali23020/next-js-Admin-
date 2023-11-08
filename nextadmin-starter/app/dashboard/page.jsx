@@ -1,6 +1,6 @@
-import stytles from "../ui/deshborad/deshborad.module.css"
-import Navber from "../ui/deshborad/navber/navber"
-import Sidber from "../ui/deshborad/sideber/sidber"
+import stytles from "../ui/dashboard/deshborad.module.css"
+import Navber from "../ui/dashboard/navber/navber"
+import Sidber from "../ui/dashboard/sideber/sidber"
 
 const page = ({children}) => {
   return (
