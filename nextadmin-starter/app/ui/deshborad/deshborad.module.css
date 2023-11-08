@@ -1,0 +1,9 @@
+.continer {
+  display: flex;
+}
+.menu {
+  flex: 1;
+}
+.content {
+  flex: 4;
+}
