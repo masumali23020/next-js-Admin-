@@ -8,7 +8,7 @@ const Products = () => {
       <div className={styles.container}>
         <div className={styles.top}> 
         <Search placeholder="search..." />
-        <Link href="/dashboard/Products/add">
+        <Link href="/dashboard/products/add">
           <button className={styles.addButton}>Add New</button>
         </Link>
         </div>
