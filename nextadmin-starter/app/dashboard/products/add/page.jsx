@@ -11,7 +11,7 @@ const AddProducts = () => {
                 <option value="phone">Phone</option>
                 <option value="computer">Computer</option>
             </select>
-            <input type="number" placeholder="price" name="price" required />
+               <input type="number" placeholder="price" name="price" required />
         <input type="number" placeholder="stock" name="stock" required />
         <input type="text" placeholder="color" name="color" />
         <input type="text" placeholder="size" name="size" />
