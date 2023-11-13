@@ -1,3 +1,25 @@
+import { User } from "./modal";
+import { connectToBd } from "./utils";
+
+
+export const fetchUsers = async () => {
+
+  try {
+    connectToBd();
+    const users = await User.find()
+
+    return users
+    
+  } catch (error) {
+    console.log(error);
+
+    throw new Error("faild to fetch user !")
+    
+  }
+}
+
+
+
 // DUMMY DATA
 
 export const cards = [
@@ -59,3 +81,4 @@ export const cards = [
       click: 4300,
     },
   ];
+
