@@ -5,8 +5,8 @@ import Image from "next/image"
 import Link from "next/link"
 import styles from "../../ui/dashboard/users/user.module.css"
 const Users =async () => {
-  const user = await fetchUsers();
-  console.log(user);
+  const users = await fetchUsers();
+  console.log(users);
     return (
       <div className={styles.container}>
         <div className={styles.top}> 
@@ -27,17 +27,18 @@ const Users =async () => {
             </tr>
           </thead>
           <tbody>
-            <tr>
+            {users.map(user => (
+              <tr key={user.id}>
               <td>
                 <div className={styles.user}>
-                  <Image src="/noavatar.png" width={40} height={40} className={styles.user} />
-                  masum
+                  <Image src={user.img || "/noavatar.png"} width={40} height={40} className={styles.user} />
+                  {user.userName}
 
                 </div>
               </td>
-             <td>masum@gmail.com</td>
-             <td>masum@gmail.com</td>
-             <td>masum@gmail.com</td>
+             <td>{user.email}</td>
+             <td>25.35.555</td>
+             <td>Admin </td>
              <td>pandind</td>
              <td>
              <div className={styles.buttons}>
@@ -56,6 +57,8 @@ const Users =async () => {
              </td>
           
             </tr>
+            ))}
+            
           </tbody>
 
         </table>
