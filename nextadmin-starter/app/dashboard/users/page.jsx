@@ -4,8 +4,9 @@ import Search from "@/app/ui/dashboard/search/search"
 import Image from "next/image"
 import Link from "next/link"
 import styles from "../../ui/dashboard/users/user.module.css"
-const Users =async () => {
-  const users = await fetchUsers();
+const Users =async ({searchParams }) => {
+  const q = searchParams?.q || "";
+  const users = await fetchUsers(q);
   console.log(users);
     return (
       <div className={styles.container}>
@@ -32,20 +33,22 @@ const Users =async () => {
               <td>
                 <div className={styles.user}>
                   <Image src={user.img || "/noavatar.png"} width={40} height={40} className={styles.user} />
-                  {user.userName}
+                  {user.username}
 
                 </div>
               </td>
              <td>{user.email}</td>
-             <td>25.35.555</td>
-             <td>Admin </td>
-             <td>pandind</td>
+             <td>{user.createdAt?.toString().slice(4,16)} </td>
+             <td>{user.isAdmin ? "Admin" : "Client"}</td>
+             <td>{user.isActive ? "active" : "passive"}</td>
              <td>
              <div className={styles.buttons}>
-                 
+              <Link href={`/dashboard/users/${user.id}`}>
                     <button className={`${styles.button} ${styles.view}`}>
                       View
                     </button>
+              </Link>
+                 
                  
                   <form >
                     <input type="hidden" name="id"  />
