@@ -1,19 +1,19 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    experimental: { appDir: true, serverComponentsExternalPackages: ["mongoose"] },
-    webpack(config) {
-        config.experiments = { ...config.experiments, topLevelAwait: true };
-        return config;
-    },
-    images:{
-        remotePatterns:[
+    reactStrictMode: true,
+    images: {
+        remotePatterns: [
             {
                 protocol: "https",
-                hostname: "media.istockphoto.com"
+                hostname: 'media.istockphoto.com'  // Use a single string instead of an array
+            },
+            {
+                protocol: "https",
+                hostname: 'plus.unsplash.com'  // Add another object if needed
             }
         ]
     },
-   
-}
+};
+
 
 module.exports = nextConfig

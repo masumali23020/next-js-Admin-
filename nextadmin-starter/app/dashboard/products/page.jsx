@@ -4,8 +4,10 @@ import Search from "@/app/ui/dashboard/search/search"
 import Image from "next/image"
 import Link from "next/link"
 import styles from "../../ui/dashboard/products/products.module.css"
-const Products =async () => {
-  const {products} = await fetchProducts()
+const Products =async ({searchParams}) => {
+  const q = searchParams?.q || "";
+  const page = searchParams?.page || 1 ;
+  const {products, count} = await fetchProducts(q, page)
   console.log(products);
 
     return (
@@ -29,12 +31,12 @@ const Products =async () => {
           </thead>
           <tbody>
             {products.map(product => {
-              const {title, desc, price,stock,createdAt} = product || {}
+              const {title, desc, price,stock,createdAt, img} = product || {}
               return (
                 <tr key={product.id}>
                 <td>
                   <div className={styles.user}>
-                    <Image src="/noproduct.jpg" width={40} height={40} className={styles.user} />
+                    <Image src={img || "/noproduct.jpg"} width={40} height={40} className={styles.user} />
                     {title}
   
                   </div>
@@ -67,7 +69,7 @@ const Products =async () => {
           </tbody>
 
         </table>
-        <Pagination />
+        <Pagination count={count} />
       </div>
     )
   }
