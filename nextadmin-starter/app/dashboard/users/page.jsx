@@ -5,9 +5,11 @@ import Image from "next/image"
 import Link from "next/link"
 import styles from "../../ui/dashboard/users/user.module.css"
 const Users =async ({searchParams }) => {
+ 
   const q = searchParams?.q || "";
-  const users = await fetchUsers(q);
-  console.log(users);
+  const page = searchParams?.page || 1 ;
+  const {users, count} = await fetchUsers(q, page);
+ 
     return (
       <div className={styles.container}>
         <div className={styles.top}> 
@@ -65,7 +67,7 @@ const Users =async ({searchParams }) => {
           </tbody>
 
         </table>
-        <Pagination />
+        <Pagination count={count} />
       </div>
     )
   }

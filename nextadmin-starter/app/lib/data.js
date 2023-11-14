@@ -2,14 +2,18 @@ import { User } from "./modal";
 import { connectToBd } from "./utils";
 
 
-export const fetchUsers = async (q) => {
-  const regex = new RegExp(q, "i")
+export const fetchUsers = async (q,page) => {
+  const regex = new RegExp(q, "i");
+  const ITEM_PER_PAGE = 2 ;
 
   try {
     connectToBd();
+    const count = await User.find({ username: { $regex: regex } }).count();
     const users = await User.find({ username: { $regex: regex } })
+      .limit(ITEM_PER_PAGE)
+      .skip(ITEM_PER_PAGE * (page - 1));
 
-    return users
+    return {users, count}
     
   } catch (error) {
     console.log(error);
