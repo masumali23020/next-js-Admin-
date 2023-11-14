@@ -1,7 +1,7 @@
-import { User } from "./modal";
+import { Product, User } from "./modal";
 import { connectToBd } from "./utils";
 
-
+// fetch user 
 export const fetchUsers = async (q,page) => {
   const regex = new RegExp(q, "i");
   const ITEM_PER_PAGE = 2 ;
@@ -23,6 +23,23 @@ export const fetchUsers = async (q,page) => {
   }
 }
 
+// fetch products 
+
+export const fetchProducts = async () => {
+
+  try {
+    connectToBd();
+    const count = await Product.find()
+    const products = await Product.find()
+
+    return {count,products}
+    
+  } catch (error) {
+    console.log(error);
+    throw new Error("Faild to fetch product !")
+    
+  }
+}
 
 
 // DUMMY DATA

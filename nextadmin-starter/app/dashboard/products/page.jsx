@@ -1,9 +1,13 @@
+import { fetchProducts } from "@/app/lib/data"
 import Pagination from "@/app/ui/dashboard/pagination/pagination"
 import Search from "@/app/ui/dashboard/search/search"
 import Image from "next/image"
 import Link from "next/link"
 import styles from "../../ui/dashboard/products/products.module.css"
-const Products = () => {
+const Products =async () => {
+  const {products} = await fetchProducts()
+  console.log(products);
+
     return (
       <div className={styles.container}>
         <div className={styles.top}> 
@@ -24,35 +28,42 @@ const Products = () => {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>
-                <div className={styles.user}>
-                  <Image src="/noproduct.jpg" width={40} height={40} className={styles.user} />
-                  masum
-
+            {products.map(product => {
+              const {title, desc, price,stock,createdAt} = product || {}
+              return (
+                <tr key={product.id}>
+                <td>
+                  <div className={styles.user}>
+                    <Image src="/noproduct.jpg" width={40} height={40} className={styles.user} />
+                    {title}
+  
+                  </div>
+                </td>
+               <td>{desc}</td>
+               <td>${price}</td>
+               <td>{createdAt.toString().slice(4,16)}</td>
+               <td>{stock}</td>
+               <td>
+               <div className={styles.buttons}>
+               <Link href={`/dashboard/products/${product.id}`}>
+                      <button className={`${styles.button} ${styles.view}`}>
+                        View
+                      </button>
+                </Link>
+                   
+                   
+                    <form >
+                      <input type="hidden" name="id"  />
+                      <button className={`${styles.button} ${styles.delete}`}>
+                        Delete
+                      </button>
+                    </form>
                 </div>
-              </td>
-             <td>Iphone</td>
-             <td>Onec</td>
-             <td>$455</td>
-             <td>10.11.23</td>
-             <td>
-             <div className={styles.buttons}>
-                 
-                    <button className={`${styles.button} ${styles.view}`}>
-                      View
-                    </button>
-                 
-                  <form >
-                    <input type="hidden" name="id"  />
-                    <button className={`${styles.button} ${styles.delete}`}>
-                      Delete
-                    </button>
-                  </form>
-                </div>
-             </td>
-          
-            </tr>
+               </td>
+            
+              </tr>
+              )
+            })}
           </tbody>
 
         </table>
