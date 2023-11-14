@@ -22,6 +22,22 @@ export const fetchUsers = async (q,page) => {
     
   }
 }
+
+// singel user 
+export const fetchUser = async (id) => {
+  console.log(id);
+  try {
+    connectToBd();
+    const user = await User.findById(id);
+    return user;
+  } catch (err) {
+    console.log(err);
+    throw new Error("Failed to fetch user!");
+  }
+};
+
+
+
 export const fetchProducts = async (q,page) => {
   const regex = new RegExp(q, "i");
   const ITEM_PER_PAGE = 2 ;
@@ -42,6 +58,17 @@ export const fetchProducts = async (q,page) => {
     
   }
 }
+
+export const fetchProduct = async (id) => {
+  try {
+    connectToBd();
+    const product = await Product.findById(id);
+    return product;
+  } catch (err) {
+    console.log(err);
+    throw new Error("Failed to fetch product!");
+  }
+};
 
 // fetch products 
 
