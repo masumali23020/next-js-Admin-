@@ -1,3 +1,4 @@
+import { deleteProduct } from "@/app/lib/action"
 import { fetchProducts } from "@/app/lib/data"
 import Pagination from "@/app/ui/dashboard/pagination/pagination"
 import Search from "@/app/ui/dashboard/search/search"
@@ -54,8 +55,8 @@ const Products =async ({searchParams}) => {
                 </Link>
                    
                    
-                    <form >
-                      <input type="hidden" name="id"  />
+                    <form action={deleteProduct}  >
+                    <input type="hidden" name="id" value={(product.id)} />
                       <button className={`${styles.button} ${styles.delete}`}>
                         Delete
                       </button>

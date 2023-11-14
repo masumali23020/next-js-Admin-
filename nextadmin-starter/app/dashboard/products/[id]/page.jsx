@@ -1,18 +1,20 @@
 
 
+import { fetchProduct } from "@/app/lib/data";
 import styles from "@/app/ui/dashboard/products/singelProducts/singleProducts.module.css";
 import Image from "next/image";
 
-const SingleProductPage = async () => {
-
+const SingleProductPage = async (params) => {
+  const {id} = params;
+  const product = fetchProduct(id)
 
   return (
     <div className={styles.container}>
       <div className={styles.infoContainer}>
         <div className={styles.imgContainer}>
-          <Image src="/noavatar.png" alt="" fill />
+          <Image src={product.img || "/noavatar.png"} alt="" fill />
         </div>
-       name
+       {product.title}
       </div>
       <div className={styles.formContainer}>
         <form  className={styles.form}>

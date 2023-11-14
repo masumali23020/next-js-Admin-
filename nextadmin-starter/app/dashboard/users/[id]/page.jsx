@@ -7,10 +7,6 @@ import Image from "next/image";
 const SingleUserPage = async ({params}) => {
   const {id} = params;
   const user = await fetchUser(id)
-console.log(user);
-
-  
- 
 
   return (
     <div className={styles.container}>
