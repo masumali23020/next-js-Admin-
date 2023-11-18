@@ -25,7 +25,7 @@ export const fetchUsers = async (q,page) => {
 
 // singel user 
 export const fetchUser = async (id) => {
-  console.log(id);
+
   try {
     connectToBd();
     const user = await User.findById(id);

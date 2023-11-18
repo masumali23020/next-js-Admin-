@@ -4,6 +4,7 @@ import bcrypt from "bcrypt";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
+import { signIn } from "../auth";
 import { Product, User } from "./modal";
 import { connectToBd } from "./utils";
 
@@ -137,6 +138,15 @@ export const deleteProduct = async (formData) => {
 
   }
   
+  export const authenticate = async (prevState, formData) => {
+    const { username, password } = Object.fromEntries(formData);
+  
+    try {
+      await signIn("credentials", { username, password });
+    } catch (err) {
+      return "Wrong Credentials!";
+    }
+  }
 
 
 
